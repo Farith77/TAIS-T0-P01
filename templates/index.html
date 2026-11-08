@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestor de tareas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+  <main>
+    <h1>Gestor de tareas</h1>
+
+    <div id="mensaje" role="alert" hidden></div>
+
+    <section aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Nueva tarea</h2>
+      <form id="form-tarea" novalidate>
+        <label>Título
+          <input type="text" id="titulo" name="titulo">
+        </label>
+        <label>Descripción
+          <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+        </label>
+        <div class="fila">
+          <label>Prioridad
+            <select id="prioridad" name="prioridad">
+              <option value="alta">Alta</option>
+              <option value="media" selected>Media</option>
+              <option value="baja">Baja</option>
+            </select>
+          </label>
+          <label>Fecha límite
+            <input type="date" id="fecha_limite" name="fecha_limite">
+          </label>
+        </div>
+        <div class="fila">
+          <button type="submit" id="btn-guardar">Crear tarea</button>
+          <button type="button" id="btn-cancelar" hidden>Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="titulo-lista">
+      <h2 id="titulo-lista">Tareas</h2>
+      <form id="form-busqueda" class="fila" novalidate>
+        <input type="search" id="q" placeholder="Buscar por título o descripción" aria-label="Buscar">
+        <select id="estado" aria-label="Estado">
+          <option value="">Todas</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="completada">Completadas</option>
+        </select>
+        <button type="submit">Buscar</button>
+      </form>
+      <ul id="lista"></ul>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
